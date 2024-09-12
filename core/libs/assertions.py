@@ -1,7 +1,7 @@
-from .exceptions import ProjectError
+from .exceptions import RechargeError
 
 def base_error(error_code,msg):
-    raise ProjectError(status_code=error_code,message=msg)
+    raise RechargeError(status_code=error_code,message=msg)
 
 def assert_valid(status,msg='BAD_REQUEST'):
     if status is False:

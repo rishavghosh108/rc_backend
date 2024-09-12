@@ -3,7 +3,7 @@ import os
 # https://docs.gunicorn.org/en/stable/settings.html
 
 proc_name = 'Recharge'
-port_number = int(os.environ.get('GUNICORN_PORT', 25))
+port_number = int(os.environ.get('GUNICORN_PORT', 8080))
 bind = '0.0.0.0:{0}'.format(port_number)
 
 backlog      = int(os.environ.get('GUNICORN_BACKLOG', 50))
