@@ -21,7 +21,7 @@ class Signup(Resource):
         print(data)
         otp = randint(100000,999999)
         print(otp)
-        # token = gen_token(data=data,secret_key=otp,time=15)
+        token = gen_token(data=data,secret_key=otp,time=15,type='signup')
         message=APIResponse('{"successful":"please enter the otp. "}',200)
         message.headers[os.getenv('verification_token_key')] = 'token'
         return message

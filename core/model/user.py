@@ -10,3 +10,17 @@ class User(db.Model):
     mobile = db.Column(db.Integer, nullable=True)
     user_id=db.Column(db.String(10), nullabe=True)
     token=db.Column(db.String(20), nullable=True)
+
+    @classmethod
+    def filter(cls, *criterion):
+        db_query = db.session.query(cls)
+        return db_query.filter(*criterion)
+
+    @classmethod
+    def signup(cls,data):
+        if data['type']==1:
+            user = cls(type=data['type'],email=data['email'],password=data['password'])
+        elif data['type']==2:
+            user = cls(type=data['type'],email=data['email'],password=data['password'])
+        else:
+            user

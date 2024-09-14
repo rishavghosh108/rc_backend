@@ -28,13 +28,13 @@ class UserDataSchema(Schema):
         password = data.get('password')
 
         if type == 1 and email is not None and password is not None:
-            if name is None and dob is None and mobile is None and user_id is None and token is None:
+            if not(name is None and dob is None and mobile is None and user_id is None and token is None):
                 raise ValidationError("please enter valid data for admin user")
         elif type == 2 and password is not None and email is not None and token is not None:
-            if name is None and dob is None and mobile is None and user_id is None:
+            if not(name is None and dob is None and mobile is None and user_id is None):
                 raise ValidationError("please enter valid data for employee")
-        elif type == 3 and password is not None and email is not None and user_id is not None and dob is not None and name is not None and mobile is not None:
-            if token is None:
+        elif type == 4 and password is not None and email is not None and user_id is not None and dob is not None and name is not None and mobile is not None:
+            if not(token is None):
                 raise ValidationError("please enter valid data for normal user")
         else:
             raise ValidationError("please enter valid data")
