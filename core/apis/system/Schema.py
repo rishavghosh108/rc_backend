@@ -8,13 +8,13 @@ def validate_integer_length(n):
 
 class UserDataSchema(Schema):
     name = fields.String(required=False)
-    dob = fields.String(required=False)
+    dob = fields.Date(required=False, format='%Y-%m-%d')
     mobile = fields.Integer(required=False, validate=validate_integer_length(10))
     email = fields.Email(required=False)
     user_id = fields.String(required=False)
     password = fields.String(required=False)
     token = fields.String(required=False)
-    type = fields.Integer(required=True, validate=validate.OneOf([1, 2, 4], error="Type must be 1, 2, or 3"))
+    type = fields.Integer(required=True, validate=validate.OneOf([1, 2, 4], error="Type must be 1, 2, or 4"))
 
     @validates_schema
     def User_type(self, data, **kwargs):
@@ -41,3 +41,8 @@ class UserDataSchema(Schema):
         
 class OtpSchema(Schema):
     otp = fields.Integer(required=True, validate=validate_integer_length(6))
+
+class LoginForgetSchema(Schema):
+    email = fields.Email(required=True)
+    password = fields.String(required=True)
+    type = fields.Integer(required=True, validate=validate.OneOf([1, 2, 4], error="Type must be 1, 2, or 4"))
